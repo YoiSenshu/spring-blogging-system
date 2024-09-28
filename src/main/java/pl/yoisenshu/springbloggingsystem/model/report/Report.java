@@ -3,6 +3,7 @@ package pl.yoisenshu.springbloggingsystem.model.report;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.lang.NonNull;
 import pl.yoisenshu.springbloggingsystem.model.Details;
 
@@ -18,17 +19,21 @@ public abstract class Report {
     private int id;
 
     @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
     private ReportStatus status = ReportStatus.PENDING;
 
     @Embedded
     @Column(nullable = false)
     private Details reportSenderDetails;
 
+    @Column(nullable = false)
     private String reportReason;
 
+    @Setter
     @Embedded
     private Details moderatorDetails;
 
+    @Setter
     private String moderatorResponse;
 
     protected Report(@NonNull Details reportSenderDetails, @NonNull String reportReason) {

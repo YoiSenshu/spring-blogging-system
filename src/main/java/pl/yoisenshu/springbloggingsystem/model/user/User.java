@@ -22,39 +22,49 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @Setter
     @Column(unique = true, nullable = false)
     @Length(min = 3, max = 24)
     @NotBlank(message = "Username must not be empty!")
     @Pattern(regexp = "^[a-zA-Z0-9_]+$", message = "Username can only contains letters, numbers, and underscores.")
     private String username;
 
+    @Setter
     private LocalDateTime lastUsernameChangeAt = null;
 
+    @Setter
     @Column(nullable = false)
     @Length(min = 1, max = 32)
     @NotBlank(message = "Nickname must not be empty!")
     private String nickname;
 
+    @Setter
     private LocalDateTime lastNicknameChangeAt = null;
 
     @Column(nullable = false)
     private LocalDateTime joinedAt;
 
+    @Setter
     @NotBlank(message = "Email must not be empty!")
     @Email(message = "Email must be valid!")
     private String email;
 
+    @Setter
     private boolean emailVerified = false;
 
+    @Setter
     @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
     private AccountStatus accountStatus = AccountStatus.INACTIVE;
 
+    @Setter
     @NotBlank(message = "Password must not be empty!")
     @Length(min = 8, max = 30, message = "Password length should be between 8 and 30 characters!")
     private String password;
 
     @Setter
     @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
     private Role role = Role.USER;
 
     public User(@NonNull String username, @NonNull String email, @NonNull String password) {

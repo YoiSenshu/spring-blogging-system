@@ -16,6 +16,7 @@ public class BlogAuthor {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @Column(nullable = false)
     private boolean ownerOfBlog;
 
     @ManyToOne

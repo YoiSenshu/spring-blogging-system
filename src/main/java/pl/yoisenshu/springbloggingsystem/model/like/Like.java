@@ -19,6 +19,7 @@ public abstract class Like {
     private int id;
 
     @Embedded
+    @Column(nullable = false)
     private Details details;
 
     public Like(@NonNull Details details) {
