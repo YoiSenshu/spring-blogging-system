@@ -7,8 +7,8 @@ import jakarta.persistence.ManyToOne;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.lang.NonNull;
-import pl.yoisenshu.springbloggingsystem.model.Details;
 import pl.yoisenshu.springbloggingsystem.model.comment.Reply;
+import pl.yoisenshu.springbloggingsystem.model.user.User;
 
 @Entity
 @DiscriminatorValue("REPLY")
@@ -20,8 +20,8 @@ public class ReplyReport extends Report {
     @JoinColumn(name = "reply_id", nullable = false)
     private Reply reportedReply;
 
-    public ReplyReport(@NonNull Details details, @NonNull String reportReason, @NonNull Reply reportedReply) {
-        super(details, reportReason);
+    public ReplyReport(@NonNull User user, @NonNull String reportReason, @NonNull Reply reportedReply) {
+        super(user, reportReason);
         this.reportedReply = reportedReply;
     }
 }

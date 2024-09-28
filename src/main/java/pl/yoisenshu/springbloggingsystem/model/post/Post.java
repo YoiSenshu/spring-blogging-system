@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.lang.NonNull;
 import pl.yoisenshu.springbloggingsystem.model.Editable;
-import pl.yoisenshu.springbloggingsystem.model.Details;
+import pl.yoisenshu.springbloggingsystem.model.CreationDetails;
 import pl.yoisenshu.springbloggingsystem.model.blog.Blog;
 
 import java.time.LocalDateTime;
@@ -27,7 +27,7 @@ public class Post implements Editable {
 
     @Embedded
     @Column(nullable = false)
-    private Details details;
+    private CreationDetails creationDetails;
 
     @Setter
     @Column(nullable = false)
@@ -36,9 +36,9 @@ public class Post implements Editable {
     @Setter
     private LocalDateTime lastEditedAt = null;
 
-    public Post(@NonNull Blog blog, @NonNull Details details, @NonNull String content) {
+    public Post(@NonNull Blog blog, @NonNull CreationDetails creationDetails, @NonNull String content) {
         this.blog = blog;
-        this.details = details;
+        this.creationDetails = creationDetails;
         this.content = content;
     }
 

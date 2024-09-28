@@ -4,14 +4,13 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.lang.NonNull;
-import pl.yoisenshu.springbloggingsystem.model.Details;
+import pl.yoisenshu.springbloggingsystem.model.CreationDetails;
 
 @Entity
 @Getter
 @NoArgsConstructor
 @Table(name = "likes")
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "like_type")
+@Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Like {
 
     @Id
@@ -20,9 +19,9 @@ public abstract class Like {
 
     @Embedded
     @Column(nullable = false)
-    private Details details;
+    private CreationDetails creationDetails;
 
-    public Like(@NonNull Details details) {
-        this.details = details;
+    public Like(@NonNull CreationDetails creationDetails) {
+        this.creationDetails = creationDetails;
     }
 }

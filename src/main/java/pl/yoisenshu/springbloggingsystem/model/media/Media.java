@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.lang.NonNull;
-import pl.yoisenshu.springbloggingsystem.model.Details;
+import pl.yoisenshu.springbloggingsystem.model.CreationDetails;
 
 @Entity
 @Table(name = "media")
@@ -18,7 +18,7 @@ public class Media {
 
     @Embedded
     @Column(nullable = false)
-    private Details details;
+    private CreationDetails creationDetails;
 
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
@@ -27,8 +27,8 @@ public class Media {
     @Column(nullable = false)
     private String filePath;
 
-    public Media(@NonNull Details details, @NonNull Type type, @NonNull String filePath) {
-        this.details = details;
+    public Media(@NonNull CreationDetails creationDetails, @NonNull Type type, @NonNull String filePath) {
+        this.creationDetails = creationDetails;
         this.type = type;
         this.filePath = filePath;
     }

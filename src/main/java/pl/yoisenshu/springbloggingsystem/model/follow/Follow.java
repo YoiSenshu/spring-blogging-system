@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.lang.NonNull;
+import pl.yoisenshu.springbloggingsystem.model.blog.Blog;
 import pl.yoisenshu.springbloggingsystem.model.user.User;
 
 @Entity
@@ -17,15 +18,15 @@ public class Follow {
     private int id;
 
     @ManyToOne
-    @JoinColumn(name = "followed_id", nullable = false)
-    private User followed;
+    @JoinColumn(name = "blog_id", nullable = false)
+    private Blog followedBlog;
 
     @ManyToOne
     @JoinColumn(name = "follower_id", nullable = false)
     private User follower;
 
-    public Follow(@NonNull User followed, @NonNull User follower) {
-        this.followed = followed;
+    public Follow(@NonNull Blog followedBlog, @NonNull User follower) {
+        this.followedBlog = followedBlog;
         this.follower = follower;
     }
 }

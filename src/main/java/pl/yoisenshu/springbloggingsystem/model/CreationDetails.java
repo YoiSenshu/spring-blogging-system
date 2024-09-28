@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 @Embeddable
 @Getter
 @NoArgsConstructor
-public class Details {
+public class CreationDetails {
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
@@ -21,7 +21,7 @@ public class Details {
 
     private LocalDateTime publicationDate;
 
-    public Details(@NonNull User author, @NonNull LocalDateTime publicationDate) {
+    public CreationDetails(@NonNull User author, @NonNull LocalDateTime publicationDate) {
         this.author = author;
         this.publicationDate = publicationDate;
     }

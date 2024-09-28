@@ -7,8 +7,8 @@ import jakarta.persistence.ManyToOne;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.lang.NonNull;
-import pl.yoisenshu.springbloggingsystem.model.Details;
 import pl.yoisenshu.springbloggingsystem.model.blog.Blog;
+import pl.yoisenshu.springbloggingsystem.model.user.User;
 
 @Entity
 @DiscriminatorValue("BLOG")
@@ -20,8 +20,8 @@ public class BlogReport extends Report {
     @JoinColumn(name = "blog_id", nullable = false)
     private Blog reportedBlog;
 
-    public BlogReport(@NonNull Details details, @NonNull String reportReason, @NonNull Blog reportedBlog) {
-        super(details, reportReason);
+    public BlogReport(@NonNull User sender, @NonNull String reportReason, @NonNull Blog reportedBlog) {
+        super(sender, reportReason);
         this.reportedBlog = reportedBlog;
     }
 }

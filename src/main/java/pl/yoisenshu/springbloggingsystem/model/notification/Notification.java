@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.lang.NonNull;
 import org.springframework.lang.Nullable;
-import pl.yoisenshu.springbloggingsystem.model.Details;
+import pl.yoisenshu.springbloggingsystem.model.CreationDetails;
 
 @Entity
 @Table(name = "notifications")
@@ -21,7 +21,7 @@ public class Notification {
 
     @Embedded
     @Column(nullable = false)
-    private Details details;
+    private CreationDetails creationDetails;
 
     @NotBlank(message = "Content must not be empty!")
     @Column(nullable = false)
@@ -32,14 +32,14 @@ public class Notification {
     @Setter
     boolean notificationSeen = false;
 
-    public Notification(@NonNull Details details, @NonNull String content, @Nullable String onClick) {
-        this.details = details;
+    public Notification(@NonNull CreationDetails creationDetails, @NonNull String content, @Nullable String onClick) {
+        this.creationDetails = creationDetails;
         this.content = content;
         this.onClick = onClick;
     }
 
-    public Notification(@NonNull Details details, @NonNull String content) {
-        this.details = details;
+    public Notification(@NonNull CreationDetails creationDetails, @NonNull String content) {
+        this.creationDetails = creationDetails;
         this.content = content;
     }
 }

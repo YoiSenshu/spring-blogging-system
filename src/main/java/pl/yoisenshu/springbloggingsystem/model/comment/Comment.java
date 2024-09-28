@@ -1,12 +1,13 @@
 package pl.yoisenshu.springbloggingsystem.model.comment;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.lang.NonNull;
 import pl.yoisenshu.springbloggingsystem.model.Editable;
-import pl.yoisenshu.springbloggingsystem.model.Details;
+import pl.yoisenshu.springbloggingsystem.model.CreationDetails;
 import pl.yoisenshu.springbloggingsystem.model.post.Post;
 
 import java.time.LocalDateTime;
@@ -26,17 +27,20 @@ public class Comment implements Editable {
     private Post post;
 
     @Embedded
-    private Details details;
+    @Column(nullable = false)
+    private CreationDetails creationDetails;
 
     @Setter
     private LocalDateTime lastEditedAt = null;
 
     @Setter
+    @Column(nullable = false)
+    @NotBlank(message = "Content must not be empty!")
     private String content;
 
-    public Comment(@NonNull Post post, @NonNull Details details, @NonNull String content) {
+    public Comment(@NonNull Post post, @NonNull CreationDetails creationDetails, @NonNull String content) {
         this.post = post;
-        this.details = details;
+        this.creationDetails = creationDetails;
         this.content = content;
     }
 

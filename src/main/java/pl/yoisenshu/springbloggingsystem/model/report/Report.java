@@ -5,7 +5,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.lang.NonNull;
-import pl.yoisenshu.springbloggingsystem.model.Details;
+import pl.yoisenshu.springbloggingsystem.model.user.User;
+
+import java.time.LocalDateTime;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
@@ -22,22 +24,33 @@ public abstract class Report {
     @Column(nullable = false)
     private ReportStatus status = ReportStatus.PENDING;
 
-    @Embedded
+    @ManyToOne
+    @JoinColumn(name = "sender_id", nullable = false)
+    private User sender;
+
     @Column(nullable = false)
-    private Details reportSenderDetails;
+    private LocalDateTime sentAt;
 
     @Column(nullable = false)
     private String reportReason;
 
-    @Setter
-    @Embedded
-    private Details moderatorDetails;
+    @ManyToOne
+    @JoinColumn(name = "moderator_id", nullable = false)
+    private User moderator;
+
+    @Column(nullable = false)
+    private LocalDateTime respondedAt;
 
     @Setter
     private String moderatorResponse;
 
-    protected Report(@NonNull Details reportSenderDetails, @NonNull String reportReason) {
-        this.reportSenderDetails = reportSenderDetails;
+    protected Report(@NonNull User sender, @NonNull String reportReason) {
+        this.sender = sender;
         this.reportReason = reportReason;
+    }
+
+    @PrePersist
+    protected void onCreate() {
+        sentAt = LocalDateTime.now();
     }
 }

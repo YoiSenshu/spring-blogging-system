@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.lang.NonNull;
+import pl.yoisenshu.springbloggingsystem.model.follow.Follow;
 import pl.yoisenshu.springbloggingsystem.model.post.Post;
 
 import java.time.LocalDateTime;
@@ -50,6 +51,9 @@ public class Blog {
 
     @OneToMany(mappedBy = "blog", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private Set<Post> posts;
+
+    @OneToMany(mappedBy = "followedBlog", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    private Set<Follow> follows;
 
     public Blog(@NonNull String blogName, @NonNull String blogTitle) {
         this.blogName = blogName;
