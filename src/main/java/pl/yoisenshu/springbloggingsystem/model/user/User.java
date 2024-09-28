@@ -9,8 +9,13 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.lang.NonNull;
+import pl.yoisenshu.springbloggingsystem.model.follow.Follow;
+import pl.yoisenshu.springbloggingsystem.model.like.Like;
+import pl.yoisenshu.springbloggingsystem.model.post.Post;
+import pl.yoisenshu.springbloggingsystem.model.report.Report;
 
 import java.time.LocalDateTime;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -66,6 +71,21 @@ public class User {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private Role role = Role.USER;
+
+
+    @OneToMany(mappedBy = "creationDetails.author", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    private Set<Post> posts;
+
+    @OneToMany(mappedBy = "follower", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    private Set<Follow> follows;
+
+    @OneToMany(mappedBy = "creationDetails.author", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    private Set<Like> likes;
+
+    @OneToMany(mappedBy = "sender", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    private Set<Report> reports;
+
+
 
     public User(@NonNull String username, @NonNull String email, @NonNull String password) {
         this.username = username;

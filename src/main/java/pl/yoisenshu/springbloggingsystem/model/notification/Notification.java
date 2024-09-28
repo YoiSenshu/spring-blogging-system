@@ -7,7 +7,9 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.lang.NonNull;
 import org.springframework.lang.Nullable;
-import pl.yoisenshu.springbloggingsystem.model.CreationDetails;
+import pl.yoisenshu.springbloggingsystem.model.user.User;
+
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "notifications")
@@ -19,9 +21,12 @@ public class Notification {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Embedded
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    private User target;
+
     @Column(nullable = false)
-    private CreationDetails creationDetails;
+    private LocalDateTime createdAt;
 
     @NotBlank(message = "Content must not be empty!")
     @Column(nullable = false)
@@ -32,14 +37,19 @@ public class Notification {
     @Setter
     boolean notificationSeen = false;
 
-    public Notification(@NonNull CreationDetails creationDetails, @NonNull String content, @Nullable String onClick) {
-        this.creationDetails = creationDetails;
+    public Notification(@NonNull User target, @NonNull String content, @Nullable String onClick) {
+        this.target = target;
         this.content = content;
         this.onClick = onClick;
     }
 
-    public Notification(@NonNull CreationDetails creationDetails, @NonNull String content) {
-        this.creationDetails = creationDetails;
+    public Notification(@NonNull User target, @NonNull String content) {
+        this.target = target;
         this.content = content;
+    }
+
+    @PrePersist
+    protected void onCreate() {
+        createdAt = LocalDateTime.now();
     }
 }

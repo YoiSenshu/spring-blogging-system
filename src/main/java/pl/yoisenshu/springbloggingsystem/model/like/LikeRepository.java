@@ -11,6 +11,10 @@ import pl.yoisenshu.springbloggingsystem.model.user.User;
 import java.util.List;
 import java.util.Optional;
 
+/* TODO:
+* Add counting methods.
+* */
+
 public interface LikeRepository<T extends Like> {
 
     boolean existsById(@NonNull Integer id);
@@ -71,4 +75,6 @@ public interface LikeRepository<T extends Like> {
     @NonNull List<ReplyLike> findAllByReplyAndCreationDetails_Author(
             @NonNull Reply reply,
             @NonNull User user);
+
+    void deleteById(@NonNull Integer id);
 }

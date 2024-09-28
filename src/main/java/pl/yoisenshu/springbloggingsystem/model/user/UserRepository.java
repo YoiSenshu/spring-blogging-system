@@ -1,5 +1,7 @@
 package pl.yoisenshu.springbloggingsystem.model.user;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.lang.NonNull;
 
 import java.util.List;
@@ -9,8 +11,7 @@ public interface UserRepository {
 
     boolean existsById(@NonNull Integer id);
 
-    @NonNull
-    Optional<User> findById(@NonNull Integer id);
+    @NonNull Optional<User> findById(@NonNull Integer id);
 
     boolean existsByUsername(@NonNull String username);
 
@@ -20,8 +21,9 @@ public interface UserRepository {
 
     @NonNull Optional<User> findByEmail(@NonNull String email);
 
-    @NonNull
-    List<User> findAllByNicknameStartingWith(@NonNull String nicknameStartPart);
+    @NonNull Page<User> findAllByNicknameStartingWith(@NonNull Pageable pageable, @NonNull String nicknameStartPart);
+
+    @NonNull List<User> findAllByNicknameStartingWith(@NonNull String nicknameStartPart);
 
     @NonNull User save(@NonNull User user);
 }
