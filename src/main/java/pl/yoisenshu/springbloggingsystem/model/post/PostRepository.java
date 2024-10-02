@@ -1,8 +1,8 @@
 package pl.yoisenshu.springbloggingsystem.model.post;
 
+import jakarta.validation.constraints.NotNull;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.lang.NonNull;
 import pl.yoisenshu.springbloggingsystem.model.blog.Blog;
 import pl.yoisenshu.springbloggingsystem.model.user.User;
 
@@ -11,22 +11,22 @@ import java.util.Optional;
 
 public interface PostRepository {
 
-    boolean existsById(@NonNull Integer id);
+    boolean existsById(@NotNull Integer id);
 
-    @NonNull
-    Optional<Post> findById(@NonNull Integer id);
+    @NotNull
+    Optional<Post> findById(@NotNull Integer id);
 
-    int countAllByBlog(@NonNull Blog blog);
+    int countAllByBlog(@NotNull Blog blog);
 
-    @NonNull
-    Page<Post> findAllByBlog(@NonNull Pageable pageable, @NonNull Blog blog);
+    @NotNull
+    Page<Post> findAllByBlog(@NotNull Pageable pageable, @NotNull Blog blog);
 
-    @NonNull
-    List<Post> findAllByBlog(@NonNull Blog blog);
+    @NotNull
+    List<Post> findAllByBlog(@NotNull Blog blog);
 
-    int countAllByCreationDetails_Author(@NonNull User author);
+    int countAllByCreationDetails_Author(@NotNull User author);
 
-    @NonNull Page<Post> findAllByCreationDetails_Author(@NonNull Pageable pageable, @NonNull User author);
+    @NotNull Page<Post> findAllByCreationDetails_Author(@NotNull Pageable pageable, @NotNull User author);
 
-    @NonNull List<Post> findAllByCreationDetails_Author(@NonNull User author);
+    @NotNull List<Post> findAllByCreationDetails_Author(@NotNull User author);
 }

@@ -1,10 +1,10 @@
 package pl.yoisenshu.springbloggingsystem.model.post;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.lang.NonNull;
 import pl.yoisenshu.springbloggingsystem.model.Editable;
 import pl.yoisenshu.springbloggingsystem.model.CreationDetails;
 import pl.yoisenshu.springbloggingsystem.model.blog.Blog;
@@ -36,7 +36,7 @@ public class Post implements Editable {
     @Setter
     private LocalDateTime lastEditedAt = null;
 
-    public Post(@NonNull Blog blog, @NonNull CreationDetails creationDetails, @NonNull String content) {
+    public Post(@NotNull Blog blog, @NotNull CreationDetails creationDetails, @NotNull String content) {
         this.blog = blog;
         this.creationDetails = creationDetails;
         this.content = content;

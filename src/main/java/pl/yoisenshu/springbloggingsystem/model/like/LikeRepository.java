@@ -1,8 +1,8 @@
 package pl.yoisenshu.springbloggingsystem.model.like;
 
+import jakarta.validation.constraints.NotNull;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.lang.NonNull;
 import pl.yoisenshu.springbloggingsystem.model.comment.Comment;
 import pl.yoisenshu.springbloggingsystem.model.comment.Reply;
 import pl.yoisenshu.springbloggingsystem.model.post.Post;
@@ -17,64 +17,64 @@ import java.util.Optional;
 
 public interface LikeRepository<T extends Like> {
 
-    boolean existsById(@NonNull Integer id);
+    boolean existsById(@NotNull Integer id);
 
-    @NonNull Optional<T> findById(@NonNull Integer id);
+    @NotNull Optional<T> findById(@NotNull Integer id);
 
-    @NonNull
+    @NotNull
     Page<Like> findAllByCreationDetails_Author(
-            @NonNull Pageable pageable,
-            @NonNull User user);
+            @NotNull Pageable pageable,
+            @NotNull User user);
 
-    @NonNull
-    List<Like> findAllByCreationDetails_Author(@NonNull User user);
+    @NotNull
+    List<Like> findAllByCreationDetails_Author(@NotNull User user);
 
-    int countAllByCreationDetails_Author(@NonNull User user);
+    int countAllByCreationDetails_Author(@NotNull User user);
 
 
 
     /*boolean existsByPostAndCreationDetails_Author(
-            @NonNull Post post,
-            @NonNull User user);*/
+            @NotNull Post post,
+            @NotNull User user);*/
 
-    @NonNull Page<PostLike> findAllByPostAndCreationDetails_Author(
-            @NonNull Pageable pageable,
-            @NonNull Post post,
-            @NonNull User user);
+    @NotNull Page<PostLike> findAllByPostAndCreationDetails_Author(
+            @NotNull Pageable pageable,
+            @NotNull Post post,
+            @NotNull User user);
 
-    @NonNull List<PostLike> findAllByPostAndCreationDetails_Author(
-            @NonNull Post post,
-            @NonNull User user);
+    @NotNull List<PostLike> findAllByPostAndCreationDetails_Author(
+            @NotNull Post post,
+            @NotNull User user);
 
 
 
     /*boolean existsByCommentAndCreationDetails_Author(
-            @NonNull Comment comment,
-            @NonNull User user);*/
+            @NotNull Comment comment,
+            @NotNull User user);*/
 
-    @NonNull Page<CommentLike> findAllByCommentAndCreationDetails_Author(
-            @NonNull Pageable pageable,
-            @NonNull Comment comment,
-            @NonNull User user);
+    @NotNull Page<CommentLike> findAllByCommentAndCreationDetails_Author(
+            @NotNull Pageable pageable,
+            @NotNull Comment comment,
+            @NotNull User user);
 
-    @NonNull List<CommentLike> findAllByCommentAndCreationDetails_Author(
-            @NonNull Comment comment,
-            @NonNull User user);
+    @NotNull List<CommentLike> findAllByCommentAndCreationDetails_Author(
+            @NotNull Comment comment,
+            @NotNull User user);
 
 
 
     /*boolean existsByReplyAndCreationDetails_Author(
-            @NonNull Reply reply,
-            @NonNull User user);*/
+            @NotNull Reply reply,
+            @NotNull User user);*/
 
-    @NonNull Page<ReplyLike> findAllByReplyAndCreationDetails_Author(
-            @NonNull Pageable pageable,
-            @NonNull Reply reply,
-            @NonNull User user);
+    @NotNull Page<ReplyLike> findAllByReplyAndCreationDetails_Author(
+            @NotNull Pageable pageable,
+            @NotNull Reply reply,
+            @NotNull User user);
 
-    @NonNull List<ReplyLike> findAllByReplyAndCreationDetails_Author(
-            @NonNull Reply reply,
-            @NonNull User user);
+    @NotNull List<ReplyLike> findAllByReplyAndCreationDetails_Author(
+            @NotNull Reply reply,
+            @NotNull User user);
 
-    void deleteById(@NonNull Integer id);
+    void deleteById(@NotNull Integer id);
 }

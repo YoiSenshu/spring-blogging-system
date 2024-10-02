@@ -1,9 +1,9 @@
 package pl.yoisenshu.springbloggingsystem.model.media;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.springframework.lang.NonNull;
 import pl.yoisenshu.springbloggingsystem.model.CreationDetails;
 
 @Entity
@@ -27,7 +27,7 @@ public class Media {
     @Column(nullable = false)
     private String filePath;
 
-    public Media(@NonNull CreationDetails creationDetails, @NonNull Type type, @NonNull String filePath) {
+    public Media(@NotNull CreationDetails creationDetails, @NotNull Type type, @NotNull String filePath) {
         this.creationDetails = creationDetails;
         this.type = type;
         this.filePath = filePath;

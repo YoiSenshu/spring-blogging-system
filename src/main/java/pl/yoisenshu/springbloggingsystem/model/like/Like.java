@@ -1,9 +1,9 @@
 package pl.yoisenshu.springbloggingsystem.model.like;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.springframework.lang.NonNull;
 import pl.yoisenshu.springbloggingsystem.model.CreationDetails;
 
 @Entity
@@ -21,7 +21,7 @@ public abstract class Like {
     @Column(nullable = false)
     private CreationDetails creationDetails;
 
-    public Like(@NonNull CreationDetails creationDetails) {
+    public Like(@NotNull CreationDetails creationDetails) {
         this.creationDetails = creationDetails;
     }
 }

@@ -4,9 +4,9 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.springframework.lang.NonNull;
 import pl.yoisenshu.springbloggingsystem.model.CreationDetails;
 import pl.yoisenshu.springbloggingsystem.model.post.Post;
 
@@ -20,7 +20,7 @@ public class PostLike extends Like {
     @JoinColumn(name = "post_id", nullable = false)
     private Post post;
 
-    public PostLike(@NonNull CreationDetails creationDetails, @NonNull Post post) {
+    public PostLike(@NotNull CreationDetails creationDetails, @NotNull Post post) {
         super(creationDetails);
         this.post = post;
     }

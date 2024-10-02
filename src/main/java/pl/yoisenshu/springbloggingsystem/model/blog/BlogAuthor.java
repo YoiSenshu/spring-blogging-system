@@ -1,9 +1,9 @@
 package pl.yoisenshu.springbloggingsystem.model.blog;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.springframework.lang.NonNull;
 import pl.yoisenshu.springbloggingsystem.model.user.User;
 
 @Entity
@@ -27,7 +27,7 @@ public class BlogAuthor {
     @JoinColumn(name = "blog_id", nullable = false)
     private Blog blog;
 
-    public BlogAuthor(@NonNull User user, @NonNull Blog blog, boolean ownerOfBlog) {
+    public BlogAuthor(@NotNull User user, @NotNull Blog blog, boolean ownerOfBlog) {
         this.ownerOfBlog = ownerOfBlog;
         this.user = user;
         this.blog = blog;

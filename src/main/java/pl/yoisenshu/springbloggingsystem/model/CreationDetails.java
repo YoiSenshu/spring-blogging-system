@@ -3,9 +3,9 @@ package pl.yoisenshu.springbloggingsystem.model;
 import jakarta.persistence.Embeddable;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.springframework.lang.NonNull;
 import pl.yoisenshu.springbloggingsystem.model.user.User;
 
 import java.time.LocalDateTime;
@@ -21,7 +21,7 @@ public class CreationDetails {
 
     private LocalDateTime publicationDate;
 
-    public CreationDetails(@NonNull User author, @NonNull LocalDateTime publicationDate) {
+    public CreationDetails(@NotNull User author, @NotNull LocalDateTime publicationDate) {
         this.author = author;
         this.publicationDate = publicationDate;
     }

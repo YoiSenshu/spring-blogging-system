@@ -4,9 +4,9 @@ import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.springframework.lang.NonNull;
 import pl.yoisenshu.springbloggingsystem.model.comment.Comment;
 import pl.yoisenshu.springbloggingsystem.model.user.User;
 
@@ -20,7 +20,7 @@ public class CommentReport extends Report {
     @JoinColumn(name = "comment_id", nullable = false)
     private Comment reportedComment;
 
-    public CommentReport(@NonNull User user, @NonNull String reportReason, @NonNull Comment reportedComment) {
+    public CommentReport(@NotNull User user, @NotNull String reportReason, @NotNull Comment reportedComment) {
         super(user, reportReason);
         this.reportedComment = reportedComment;
     }

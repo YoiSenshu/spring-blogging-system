@@ -1,8 +1,8 @@
 package pl.yoisenshu.springbloggingsystem.model.report;
 
+import jakarta.validation.constraints.NotNull;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.lang.NonNull;
 import pl.yoisenshu.springbloggingsystem.model.user.User;
 
 import java.util.List;
@@ -10,15 +10,15 @@ import java.util.Optional;
 
 public interface ReportRepository<T extends Report> {
 
-    boolean existsById(@NonNull Integer id);
+    boolean existsById(@NotNull Integer id);
 
-    @NonNull Optional<T> findById(@NonNull Integer id);
+    @NotNull Optional<T> findById(@NotNull Integer id);
 
-    @NonNull Page<T> findBySender(@NonNull Pageable pageable, @NonNull User sender);
+    @NotNull Page<T> findBySender(@NotNull Pageable pageable, @NotNull User sender);
 
-    @NonNull List<T> findBySender(@NonNull User sender);
+    @NotNull List<T> findBySender(@NotNull User sender);
 
-    @NonNull Page<T> findAllByStatus(@NonNull Pageable pageable, @NonNull ReportStatus status);
+    @NotNull Page<T> findAllByStatus(@NotNull Pageable pageable, @NotNull ReportStatus status);
 
-    @NonNull List<T> findAllByStatus(@NonNull ReportStatus status);
+    @NotNull List<T> findAllByStatus(@NotNull ReportStatus status);
 }

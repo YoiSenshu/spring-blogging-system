@@ -1,8 +1,8 @@
 package pl.yoisenshu.springbloggingsystem.model.media;
 
+import jakarta.validation.constraints.NotNull;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.lang.NonNull;
 import pl.yoisenshu.springbloggingsystem.model.user.User;
 
 import java.util.List;
@@ -10,13 +10,13 @@ import java.util.Optional;
 
 public interface MediaRepository {
 
-    boolean existsById(@NonNull Integer id);
+    boolean existsById(@NotNull Integer id);
 
-    @NonNull Optional<Media> findById(@NonNull Integer id);
+    @NotNull Optional<Media> findById(@NotNull Integer id);
 
-    int countAllByCreationDetails_Author(@NonNull User user);
+    int countAllByCreationDetails_Author(@NotNull User user);
 
-    @NonNull Page<Media> findAllByCreationDetails_Author(@NonNull Pageable pageable, @NonNull User user);
+    @NotNull Page<Media> findAllByCreationDetails_Author(@NotNull Pageable pageable, @NotNull User user);
 
-    @NonNull List<Media> findAllByCreationDetails_Author(@NonNull User user);
+    @NotNull List<Media> findAllByCreationDetails_Author(@NotNull User user);
 }

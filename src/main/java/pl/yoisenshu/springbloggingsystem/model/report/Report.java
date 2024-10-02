@@ -1,10 +1,10 @@
 package pl.yoisenshu.springbloggingsystem.model.report;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.lang.NonNull;
 import pl.yoisenshu.springbloggingsystem.model.user.User;
 
 import java.time.LocalDateTime;
@@ -44,7 +44,7 @@ public abstract class Report {
     @Setter
     private String moderatorResponse;
 
-    protected Report(@NonNull User sender, @NonNull String reportReason) {
+    protected Report(@NotNull User sender, @NotNull String reportReason) {
         this.sender = sender;
         this.reportReason = reportReason;
     }

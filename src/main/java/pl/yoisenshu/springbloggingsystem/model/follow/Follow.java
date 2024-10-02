@@ -1,9 +1,9 @@
 package pl.yoisenshu.springbloggingsystem.model.follow;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.springframework.lang.NonNull;
 import pl.yoisenshu.springbloggingsystem.model.blog.Blog;
 import pl.yoisenshu.springbloggingsystem.model.user.User;
 
@@ -25,7 +25,7 @@ public class Follow {
     @JoinColumn(name = "follower_id", nullable = false)
     private User follower;
 
-    public Follow(@NonNull Blog followedBlog, @NonNull User follower) {
+    public Follow(@NotNull Blog followedBlog, @NotNull User follower) {
         this.followedBlog = followedBlog;
         this.follower = follower;
     }

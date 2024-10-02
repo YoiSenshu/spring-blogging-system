@@ -1,8 +1,8 @@
 package pl.yoisenshu.springbloggingsystem.model.notification;
 
+import jakarta.validation.constraints.NotNull;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.lang.NonNull;
 import pl.yoisenshu.springbloggingsystem.model.user.User;
 
 import java.util.List;
@@ -10,19 +10,19 @@ import java.util.Optional;
 
 public interface NotificationRepository {
 
-    boolean existsById(@NonNull Integer id);
+    boolean existsById(@NotNull Integer id);
 
-    @NonNull Optional<Notification> findById(@NonNull Integer id);
+    @NotNull Optional<Notification> findById(@NotNull Integer id);
 
-    @NonNull Page<Notification> findAllByTarget(@NonNull Pageable pageable, @NonNull User target);
+    @NotNull Page<Notification> findAllByTarget(@NotNull Pageable pageable, @NotNull User target);
 
-    @NonNull List<Notification> findAllByTarget(@NonNull User target);
+    @NotNull List<Notification> findAllByTarget(@NotNull User target);
 
-    int countAllByTargetAndAndNotificationSeenIsFalse(@NonNull User target);
+    int countAllByTargetAndAndNotificationSeenIsFalse(@NotNull User target);
 
-    @NonNull Page<Notification> findAllByTargetAndAndNotificationSeenIsFalse(@NonNull Pageable pageable, @NonNull User target);
+    @NotNull Page<Notification> findAllByTargetAndAndNotificationSeenIsFalse(@NotNull Pageable pageable, @NotNull User target);
 
-    @NonNull List<Notification> findAllByTargetAndAndNotificationSeenIsFalse(@NonNull User target);
+    @NotNull List<Notification> findAllByTargetAndAndNotificationSeenIsFalse(@NotNull User target);
 
-    void deleteById(@NonNull Integer id);
+    void deleteById(@NotNull Integer id);
 }

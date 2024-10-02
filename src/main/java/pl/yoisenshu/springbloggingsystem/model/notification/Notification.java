@@ -2,10 +2,10 @@ package pl.yoisenshu.springbloggingsystem.model.notification;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.lang.NonNull;
 import org.springframework.lang.Nullable;
 import pl.yoisenshu.springbloggingsystem.model.user.User;
 
@@ -37,13 +37,13 @@ public class Notification {
     @Setter
     boolean notificationSeen = false;
 
-    public Notification(@NonNull User target, @NonNull String content, @Nullable String onClick) {
+    public Notification(@NotNull User target, @NotNull String content, @Nullable String onClick) {
         this.target = target;
         this.content = content;
         this.onClick = onClick;
     }
 
-    public Notification(@NonNull User target, @NonNull String content) {
+    public Notification(@NotNull User target, @NotNull String content) {
         this.target = target;
         this.content = content;
     }

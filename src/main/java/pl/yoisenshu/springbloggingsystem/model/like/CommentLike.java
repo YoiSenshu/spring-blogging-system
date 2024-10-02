@@ -4,9 +4,9 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.springframework.lang.NonNull;
 import pl.yoisenshu.springbloggingsystem.model.CreationDetails;
 import pl.yoisenshu.springbloggingsystem.model.comment.Comment;
 
@@ -20,7 +20,7 @@ public class CommentLike extends Like {
     @JoinColumn(name = "comment_id", nullable = false)
     private Comment comment;
 
-    public CommentLike(@NonNull CreationDetails creationDetails, @NonNull Comment comment) {
+    public CommentLike(@NotNull CreationDetails creationDetails, @NotNull Comment comment) {
         super(creationDetails);
         this.comment = comment;
     }

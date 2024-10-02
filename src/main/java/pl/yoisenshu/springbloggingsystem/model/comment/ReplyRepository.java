@@ -1,8 +1,8 @@
 package pl.yoisenshu.springbloggingsystem.model.comment;
 
+import jakarta.validation.constraints.NotNull;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.lang.NonNull;
 import pl.yoisenshu.springbloggingsystem.model.user.User;
 
 import java.util.List;
@@ -10,21 +10,21 @@ import java.util.Optional;
 
 public interface ReplyRepository {
 
-    boolean existsById(@NonNull Integer id);
+    boolean existsById(@NotNull Integer id);
 
-    @NonNull Optional<Reply> findById(@NonNull Integer id);
+    @NotNull Optional<Reply> findById(@NotNull Integer id);
 
-    int countAllByComment(@NonNull Comment comment);
+    int countAllByComment(@NotNull Comment comment);
 
-    @NonNull
-    Page<Reply> findAllByComment(@NonNull Pageable pageable, @NonNull Comment comment);
+    @NotNull
+    Page<Reply> findAllByComment(@NotNull Pageable pageable, @NotNull Comment comment);
 
-    @NonNull
-    List<Reply> findAllByComment(@NonNull Comment comment);
+    @NotNull
+    List<Reply> findAllByComment(@NotNull Comment comment);
 
-    int countAllByCreationDetails_Author(@NonNull User author);
+    int countAllByCreationDetails_Author(@NotNull User author);
 
-    @NonNull Page<Reply> findAllByCreationDetails_Author(@NonNull Pageable pageable, @NonNull User author);
+    @NotNull Page<Reply> findAllByCreationDetails_Author(@NotNull Pageable pageable, @NotNull User author);
 
-    @NonNull List<Reply> findAllByCreationDetails_Author(@NonNull User author);
+    @NotNull List<Reply> findAllByCreationDetails_Author(@NotNull User author);
 }

@@ -2,12 +2,12 @@ package pl.yoisenshu.springbloggingsystem.model.blog;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.validator.constraints.Length;
-import org.springframework.lang.NonNull;
 import pl.yoisenshu.springbloggingsystem.model.follow.Follow;
 import pl.yoisenshu.springbloggingsystem.model.post.Post;
 
@@ -55,7 +55,7 @@ public class Blog {
     @OneToMany(mappedBy = "followedBlog", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private Set<Follow> follows;
 
-    public Blog(@NonNull String blogName, @NonNull String blogTitle) {
+    public Blog(@NotNull String blogName, @NotNull String blogTitle) {
         this.blogName = blogName;
         this.blogTitle = blogTitle;
     }
