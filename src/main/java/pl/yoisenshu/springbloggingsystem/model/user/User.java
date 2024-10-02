@@ -16,6 +16,7 @@ import pl.yoisenshu.springbloggingsystem.model.report.Report;
 
 import java.time.LocalDateTime;
 import java.util.Set;
+import java.util.UUID;
 
 @Entity
 @Getter
@@ -53,6 +54,9 @@ public class User {
     @NotBlank(message = "Email must not be empty!")
     @Email(message = "Email must be valid!")
     private String email;
+
+    @Setter
+    private UUID emailVerificationToken = UUID.randomUUID();
 
     @Setter
     private boolean emailVerified = false;

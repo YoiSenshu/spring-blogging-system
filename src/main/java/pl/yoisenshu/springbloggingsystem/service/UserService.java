@@ -3,12 +3,12 @@ package pl.yoisenshu.springbloggingsystem.service;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import pl.yoisenshu.springbloggingsystem.dto.user.ConfirmEmailDTO;
 import pl.yoisenshu.springbloggingsystem.dto.user.RegisterUserDTO;
-import pl.yoisenshu.springbloggingsystem.dto.user.UserDataDTO;
+import pl.yoisenshu.springbloggingsystem.dto.user.RegisteredUserDTO;
+import pl.yoisenshu.springbloggingsystem.model.user.AccountStatus;
 import pl.yoisenshu.springbloggingsystem.model.user.User;
 import pl.yoisenshu.springbloggingsystem.model.user.UserRepository;
-
-import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -16,10 +16,14 @@ public class UserService {
 
     private final UserRepository userRepository;
 
-    public Optional<UserDataDTO> registerUser(@NotNull RegisterUserDTO registerUserDTO) {
+    public RegisteredUserDTO registerUser(@NotNull RegisterUserDTO registerUserDTO) {
 
-        if(userRepository.existsByEmail(registerUserDTO.getEmail()) || userRepository.existsByUsername(registerUserDTO.getUsername())) {
-            return Optional.empty();
+        if(userRepository.existsByEmail(registerUserDTO.getEmail())) {
+            throw new IllegalArgumentException("This email address is already in use.");
+        }
+
+        if(userRepository.existsByUsername(registerUserDTO.getUsername())) {
+            throw new IllegalArgumentException("This username address is already in use.");
         }
 
         User user = new User(
@@ -29,6 +33,21 @@ public class UserService {
         );
 
         userRepository.save(user);
-        return Optional.of(new UserDataDTO(user));
+        return new RegisteredUserDTO(user);
+    }
+
+    public RegisteredUserDTO confirmEmail(@NotNull ConfirmEmailDTO confirmEmailDTO) {
+
+        User user = userRepository.findByUsername(confirmEmailDTO.getUsername())
+                .orElseThrow(() -> new IllegalArgumentException("User with given username does not exists."));
+
+        if(!user.getEmailVerificationToken().equals(confirmEmailDTO.getToken())) {
+            throw new IllegalArgumentException("Email verification token is incorrect.");
+        }
+
+        user.setEmailVerified(true);
+        user.setAccountStatus(AccountStatus.ACTIVE);
+        userRepository.save(user);
+        return new RegisteredUserDTO(user);
     }
 }
